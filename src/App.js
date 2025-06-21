@@ -10,8 +10,13 @@ function App() {
   const [items, setItems] = useState([]);
 
   const fetchItems = async () => {
-    const res = await axios.get('/api/items');
-    setItems(res.data);
+    try {
+      const res = await axios.get('/api/items');
+      console.log('Fetched items:', res.data);
+      setItems(res.data);
+    } catch (error) {
+      console.error('Error fetching items:', error);
+    }
   };
 
   useEffect(() => {
@@ -19,8 +24,13 @@ function App() {
   }, []);
 
   const handleAddItem = async (item) => {
-    await axios.post('/api/items', item);
-    fetchItems();
+    try {
+      const res = await axios.post('/api/items', item);
+      console.log('Added item:', res.data);
+      fetchItems();
+    } catch (error) {
+      console.error('Error adding item:', error);
+    }
   };
 
   return (
