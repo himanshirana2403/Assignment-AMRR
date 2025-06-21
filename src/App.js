@@ -10,7 +10,7 @@ function App() {
   const [items, setItems] = useState([]);
 
   const fetchItems = async () => {
-    const res = await axios.get('http://localhost:5000/items');
+    const res = await axios.get('/api/items');
     setItems(res.data);
   };
 
@@ -19,7 +19,7 @@ function App() {
   }, []);
 
   const handleAddItem = async (item) => {
-    await axios.post('http://localhost:5000/items', item);
+    await axios.post('/api/items', item);
     fetchItems();
   };
 
